@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class ConrollerWallHP : MonoBehaviour
 {
-    public float maxHP = 100f;
+    [NonSerialized] public float maxHP = 100f;
 
-    private float correctHP = 0f;
+    [NonSerialized] public float correctHP = 0f;
 
     private SpriteRenderer spriteRenderer;
     void Awake()
