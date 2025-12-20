@@ -16,27 +16,34 @@ public class DambaInf : MonoBehaviour
     public TextMeshProUGUI textNumDamba;
     public Slider SliderHP;
 
-    private ConrollerWallHP conrollerWallHP;
+    [Header("ŒÍÌÓ ÔÓÍ‡˜ÍË")]
+    public GameObject upgradeWin;
+    public TextMeshProUGUI upTextNumDamba;
+    public Slider upSliderHP;
 
-    private bool openMenu = false;
+    private ConrollerWallHP conrollerWallHP;
+    public static int ÒurrentDam = 0;
     void Start()
     {
         conrollerWallHP = GetComponent<ConrollerWallHP>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        if (!upgradeWin.active && ÒurrentDam != 0)
+        {
+            ÒurrentDam = 0;
+        }
     }
 
     private void OnMouseOver()
     {
-        if (!infWin.active && !openMenu)
+        if (!infWin.active && !upgradeWin.active)
         {
             infWin.SetActive(true);
             textNumDamba.text = $"ƒ‡Ï·‡: {numDamba}";
         }
-        if (openMenu)
+        if (upgradeWin.active)
         {
             infWin.SetActive(false);
         }
@@ -44,7 +51,10 @@ public class DambaInf : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                openMenu = true;
+                upTextNumDamba.text = $"ƒ‡Ï·‡: {numDamba}";
+                ÒurrentDam = numDamba;
+                upSliderHP.value = conrollerWallHP.correctHP / conrollerWallHP.maxHP;
+                upgradeWin.SetActive(true);
             }
 
             SliderHP.value = conrollerWallHP.correctHP / conrollerWallHP.maxHP;
