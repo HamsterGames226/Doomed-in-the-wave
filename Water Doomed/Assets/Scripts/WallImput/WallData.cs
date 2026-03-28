@@ -6,8 +6,7 @@ public class WallData : MonoBehaviour
 {
     public static float[] HP = { 100f, 100f, 100f };
 
-    public static int wood = 3000; // ОСНОВНОЙ РЕСУРС
-    public static int stone = 1500; // Вспомогательный ресурс
+    public static int beton = 4500; 
 
     public static float[] numHeightLVL = { 0, 0, 0 }; // 10 уровней, а не слайдр таккак лучше сделать нелененую прогрессию апгрейта. Это просто интерсеней 
     public static float[] numStrengthLVL = { 0, 0, 0 }; // В час ночи кажется гениальным, но дробные уровни помогут плавно апгрейдить слайдр уровня. ЭТО ДОЛЖНО РАБОТАТЬ
@@ -47,9 +46,9 @@ public class WallData : MonoBehaviour
     {
         if(numHeightLVL[DambaInf.сurrentDam - 1] <= 9)
         {
-            if (wood >= priceHeightLVL[(int)numHeightLVL[DambaInf.сurrentDam - 1]])
+            if (beton >= priceHeightLVL[(int)numHeightLVL[DambaInf.сurrentDam - 1]])
             {
-                wood -= priceHeightLVL[(int)numHeightLVL[DambaInf.сurrentDam - 1]];
+                beton -= priceHeightLVL[(int)numHeightLVL[DambaInf.сurrentDam - 1]];
                 //timeWaitHeight += 
             }
             else
@@ -64,7 +63,7 @@ public class WallData : MonoBehaviour
         numHeightLVL[DambaInf.сurrentDam - 1] += 1;
     }
 
-    public IEnumerator UpgradeHeightWait()
+    public IEnumerator UpgradeHeightWait(float timeWait)
     {
         yield return new WaitForSeconds(2.5f);
     }
